@@ -1,0 +1,51 @@
+README file for axdigi  			24 July 1995
+
+axdigi is a simple little program that will allow Linux systems to do
+cross-port digipeating.  For those, like me, who are having problems with
+normal single port digipeating it does that too.  Please note this software
+is ALPHA test so it may do some weird things for you.
+
+The program has no arguments, although if you use either the -v or -h flags
+you will get the version string and the no warranty message.  axdigi works
+out for itself what ports and callsigns to use.  Essentially, all ports with
+ax.25 running and the callsigns given for that port.  It also does the
+correct callsign swapping when digipeating via cross-ports.
+
+To start it I suggest putting a line in your /etc/rc.local file, if you had
+put axdigi in /sbin then the line would be;
+/sbin/axdigi &
+
+Note: The program finds the interface callsigns only once, at the start of
+the program.  So if you change an interface callsign or bring one up or
+down, you will have to restart the program.  This will probably change in
+the next version if it is a major problem.
+
+You will, of course, require the ax25 code within the kernel before this
+program works.  This program is most useful for those who are running TNOS
+for Linux.  Now you can connect the radio ports to Linux and use digipeating
+to get to the TNOS system.
+
+Here's an example;
+My system has two radio ports, pt0a and pt0b, plus an internal ax25 link to
+TNOS call sl0.  The callsigns are vk2xlz, vk2xlz-1 and vk2xlz-2
+respectively.  In addition, the TNOS systems callsign is vk2xlz-4.
+
+For someone to connect to TNOS system from pt0b or pt0a, they just go via
+vk2xlz-2, axdigi will change it's digipeater callsign so TNOS knows where to
+send the replies (ala AXIP systems). For someone on the TNOS system to
+connect out, they go via xlz or xlz-1, depending on wether they want to
+connect to someone on pt0a or pt0b.
+
+I'd be very interested to hear comments about the program.  I assume it is
+only a temporary measure until it is put into the kernel.  The system used
+here was;
+Linux 1.1.95 with AX.25 028 and PackeTwin 0.2 additions.
+GCC 2.6.2
+libc 4.6.27
+
+Enjoy!
+
+  - Craig vk2xlz
+
+craig.small@eol.ieaust.org.au   csmall@acacia.itd.uts.edu.au
+vk2xlz@gonzo.vk2xlz.ampr.org    VK2XLZ@VK2XSB.#SYD.NSW.AUS.OC
