@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     int size, rt;
     char buf[4096];
     struct sockaddr sa;
-    socklen_t asize=sizeof(sa);
+    socklen_t asize;
 
     /* Check our huge range of flags */
     if (argc > 1)
@@ -83,6 +83,7 @@ int main(int argc, char *argv[])
 
     while(1)
     {
+        asize = sizeof(sa);
         if ((size = recvfrom(skt, buf, sizeof(buf), 0, &sa, &asize)) == -1)
         {
             perror("recv");
